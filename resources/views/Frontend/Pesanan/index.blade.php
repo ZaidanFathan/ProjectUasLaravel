@@ -5,6 +5,7 @@
     <table class="table table-striped">
         <thead>
                <tr>
+                <th>Nama Pemesan</th>
                 <th>Produk</th>
                 <th>Tanggal Pemesanan</th>
                 <th>Jumlah Pesanan</th>
@@ -14,6 +15,7 @@
         <tbody>
             @foreach ($data as $item)
             <tr>
+                <td>{{$item->nama_pemesan}}</td>
                 <td>
                     {{$item->Produk}}
                     </td>
