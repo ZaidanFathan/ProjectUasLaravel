@@ -36,7 +36,7 @@ class PesananController extends Controller
         ->get();
         
         foreach ($cart as $value) {
-         $TotalHarga += ($value->harga_jual + 25000) * $value->Total_Pesanan;
+         $TotalHarga += ($value->harga_jual * $value->Total_Pesanan) + 25000;
         DB::table('pesanan')->insert([
             'tanggal' => $request->tanggal,
             'nama_pemesan' => $request->nama_pemesan,
@@ -48,6 +48,7 @@ class PesananController extends Controller
             'produk_id' => $value->id,
             'total' => $TotalHarga
         ]);
+        $TotalHarga = 0;
         DB::table('cart')->where('id', '=', $value->IdCart)->delete();
     }
 
