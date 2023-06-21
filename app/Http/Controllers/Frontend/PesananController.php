@@ -48,9 +48,6 @@ class PesananController extends Controller
             'produk_id' => $value->id,
             'total' => $TotalHarga
         ]);
-            'total' => $TotalHarga,
-            'users_id' => 2
-        ]);
         $TotalHarga = 0;
         DB::table('cart')->where('id', '=', $value->IdCart)->delete();
     }
