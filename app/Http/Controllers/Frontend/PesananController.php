@@ -19,7 +19,7 @@ class PesananController extends Controller
 
     public function get(){
         $data =DB::table('cart')
-        ->join('produk', 'produk.id', '=', 'cart.idProduk')
+        ->join('produk', 'produk.id', '=', 'cart.produk_id')
         ->join('kategori_produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
         ->select('produk.*', 'kategori_produk.nama AS Kategori', 'cart.total AS Total_Pesanan')
         ->get();
@@ -30,13 +30,13 @@ class PesananController extends Controller
     public function create(Request $request) {
         $TotalHarga = 0;
         $cart = DB::table('cart')
-        ->join('produk', 'produk.id', '=', 'cart.idProduk')
+        ->join('produk', 'produk.id', '=', 'cart.produk_id')
         ->join('kategori_produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
         ->select('produk.*', 'kategori_produk.nama AS Kategori', 'cart.total AS Total_Pesanan', 'cart.id AS IdCart')
         ->get();
         
         foreach ($cart as $value) {
-         $TotalHarga += ($value->harga_jual + 25000) * $value->Total_Pesanan;
+         $TotalHarga += ($value->harga_jual * $value->Total_Pesanan) + 25000;
         DB::table('pesanan')->insert([
             'tanggal' => $request->tanggal,
             'nama_pemesan' => $request->nama_pemesan,
@@ -48,6 +48,10 @@ class PesananController extends Controller
             'produk_id' => $value->id,
             'total' => $TotalHarga
         ]);
+            'total' => $TotalHarga,
+            'users_id' => 2
+        ]);
+        $TotalHarga = 0;
         DB::table('cart')->where('id', '=', $value->IdCart)->delete();
     }
 
