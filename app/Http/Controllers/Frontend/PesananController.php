@@ -46,6 +46,8 @@ class PesananController extends Controller
             'jumlah_pesanan' => $value->Total_Pesanan,
             'deskripsi' => $request->deskripsi,
             'produk_id' => $value->id,
+            'total' => $TotalHarga
+        ]);
             'total' => $TotalHarga,
             'users_id' => 2
         ]);
