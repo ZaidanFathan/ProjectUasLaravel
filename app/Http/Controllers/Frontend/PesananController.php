@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesanan;
+use Auth;
 use Illuminate\Http\Request;
 use DB;
 
@@ -13,6 +14,7 @@ class PesananController extends Controller
         $data = DB::table('pesanan')
         ->join('produk', 'produk.id', '=', 'pesanan.produk_id')
         ->select('produk.nama AS Produk', 'pesanan.*')
+        ->where('users_id', Auth::user()->id)
         ->get();
         return view('Frontend.Pesanan.index', compact('data'));
     }
@@ -47,7 +49,7 @@ class PesananController extends Controller
             'deskripsi' => $request->deskripsi,
             'produk_id' => $value->id,
             'total' => $TotalHarga,
-            'users_id' => 2
+            'users_id' => Auth::user()->id
         ]);
         $TotalHarga = 0;
         DB::table('cart')->where('id', '=', $value->IdCart)->delete();

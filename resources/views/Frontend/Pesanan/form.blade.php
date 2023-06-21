@@ -24,6 +24,7 @@
             type="text"
             class="form-control rounded-pill border border-success"
             name="nama_pemesan"
+            value="{{ Auth::user()->name }}"
             required
           />
         </div>
