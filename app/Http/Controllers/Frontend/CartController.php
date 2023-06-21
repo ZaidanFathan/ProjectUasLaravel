@@ -13,7 +13,7 @@ class CartController extends Controller
         session()->put('CartTotal', $total);
 
         $cart = DB::table('cart')
-        ->join('produk', 'produk.id', '=', 'cart.idProduk')
+        ->join('produk', 'produk.id', '=', 'cart.produk_id')
         ->join('kategori_produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
         ->select('produk.*', 'kategori_produk.nama AS Kategori', 'cart.total AS Total_Pesanan')
         ->get();
@@ -22,28 +22,30 @@ class CartController extends Controller
     }
 
     public function insert(int $id) {
-        $cart = (array) DB::table('cart')->where('idProduk', $id)->first();
+        $cart = (array) DB::table('cart')->where('cart.produk_id', $id)->first();
         if (count($cart) > 0) {
             DB::table('cart')
-            ->where('idProduk', $id)
+            ->where('cart.produk_id', $id)
             ->increment('total', 1);
         }else{
             DB::table('cart')->insert([
-                'idProduk' => $id
+                'cart.produk_id' => $id,
+                'total' => 1,
+                'users_id' => 2
             ]);
         }
         return redirect('/produk/cart');
     }
 
     public function delete(int $id){
-        $data =  DB::table('cart')->where('idProduk', '=', $id)->get();
+        $data =  DB::table('cart')->where('cart.produk_id', '=', $id)->get();
          foreach ($data as $value) {
              if ($value->total > 1) {
                  DB::table('cart')
-                 ->where('idProduk', $id)
+                 ->where('cart.produk_id', $id)
                  ->decrement('total', 1);
              }else{
-                 DB::table('cart')->where('idProduk', '=', $id)->delete();
+                 DB::table('cart')->where('cart.produk_id', '=', $id)->delete();
              }
          }
  
