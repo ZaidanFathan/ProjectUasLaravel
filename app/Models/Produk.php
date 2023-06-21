@@ -21,7 +21,7 @@ class Produk extends Model
         'kategori_produk_id',
         'img'
     ];
-
+    public $timestamps = false;
     public function KategoriProduk(){
         return $this->belongsTo(KategoriProduk::class);
     }
