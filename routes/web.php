@@ -49,3 +49,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::put('/produk/update/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'update']);
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
