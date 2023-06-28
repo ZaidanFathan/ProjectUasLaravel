@@ -23,10 +23,11 @@ class CartController extends Controller
     }
 
     public function insert(int $id) {
-        $cart = (array) DB::table('cart')->where('cart.produk_id', $id)->first();
+        $cart = (array) DB::table('cart')->where('cart.produk_id', $id)->where('users_id', Auth::user()->id)->first();
         if (count($cart) > 0) {
             DB::table('cart')
             ->where('cart.produk_id', $id)
+            ->where('users_id', Auth::user()->id)
             ->increment('total', 1);
         }else{
             DB::table('cart')->insert([
@@ -39,14 +40,15 @@ class CartController extends Controller
     }
 
     public function delete(int $id){
-        $data =  DB::table('cart')->where('cart.produk_id', '=', $id)->get();
+        $data =  DB::table('cart')->where('cart.produk_id', '=', $id)->where('users_id', Auth::user()->id)->get();
          foreach ($data as $value) {
              if ($value->total > 1) {
                  DB::table('cart')
                  ->where('cart.produk_id', $id)
+                 ->where('users_id', Auth::user()->id)
                  ->decrement('total', 1);
              }else{
-                 DB::table('cart')->where('cart.produk_id', '=', $id)->delete();
+                 DB::table('cart')->where('cart.produk_id', '=', $id) ->where('users_id', Auth::user()->id)->delete();
              }
          }
  
