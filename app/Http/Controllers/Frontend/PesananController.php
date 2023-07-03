@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesanan;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+// use Auth;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PesananController extends Controller
 {

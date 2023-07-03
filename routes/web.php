@@ -47,6 +47,17 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('/produk/store', [App\Http\Controllers\Backend\ProdukController::class, 'store']);
         Route::delete('/produk/destroy/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'destroy']);
         Route::put('/produk/update/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'update']);
+
+        Route::get('/pesanan', [App\Http\Controllers\Backend\PesananController::class, 'index']);
+        Route::get('/pesanan/create', [App\Http\Controllers\Backend\PesananController::class, 'create']);
+        Route::get('/pesanan/edit/{id}', [App\Http\Controllers\Backend\PesananController::class, 'edit']);
+        Route::get('/pesanan/show/{id}', [App\Http\Controllers\Backend\PesananController::class, 'show']);
+        Route::post('/pesanan/store', [App\Http\Controllers\Backend\PesananController::class, 'store']);
+        Route::delete('/pesanan/destroy/{id}', [App\Http\Controllers\Backend\PesananController::class, 'destroy']);
+        Route::put('/pesanan/update/{id}', [App\Http\Controllers\Backend\PesananController::class, 'update']);
+
+        Route::get('/cart', [App\Http\Controllers\Backend\CartController::class, 'index']);
+        Route::get('/cart/show/{id}', [App\Http\Controllers\Backend\CartController::class, 'show']);
     });
 });
 

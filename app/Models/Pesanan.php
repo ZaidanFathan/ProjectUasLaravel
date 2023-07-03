@@ -22,4 +22,7 @@ class Pesanan extends Model
     ];
 
     public $timestamps = false;
+    public function produk(){
+        return $this->hasMany(Produk::class);
+    }
 }
