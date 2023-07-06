@@ -56,6 +56,14 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::delete('/pesanan/destroy/{id}', [App\Http\Controllers\Backend\PesananController::class, 'destroy']);
         Route::put('/pesanan/update/{id}', [App\Http\Controllers\Backend\PesananController::class, 'update']);
 
+        Route::get('/user', [App\Http\Controllers\Backend\UserController::class, 'index']);
+        Route::get('/user/create', [App\Http\Controllers\Backend\UserController::class, 'create']);
+        Route::get('/user/edit/{id}', [App\Http\Controllers\Backend\UserController::class, 'edit']);
+        Route::get('/user/show/{id}', [App\Http\Controllers\Backend\UserController::class, 'show']);
+        Route::post('/user/store', [App\Http\Controllers\Backend\UserController::class, 'store']);
+        Route::delete('/user/destroy/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy']);
+        Route::put('/user/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'update']);
+
         Route::get('/cart', [App\Http\Controllers\Backend\CartController::class, 'index']);
         Route::get('/cart/show/{id}', [App\Http\Controllers\Backend\CartController::class, 'show']);
     });
@@ -64,12 +72,3 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//belum dimasukin ke khusus admin ya bang
-Route::get('/user', [App\Http\Controllers\Backend\UserController::class, 'index']);
-Route::get('/user/create', [App\Http\Controllers\Backend\UserController::class, 'create']);
-Route::get('/user/edit/{id}', [App\Http\Controllers\Backend\UserController::class, 'edit']);
-Route::get('/user/show/{id}', [App\Http\Controllers\Backend\UserController::class, 'show']);
-Route::post('/user/store', [App\Http\Controllers\Backend\UserController::class, 'store']);
-Route::delete('/user/destroy/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy']);
-Route::put('/user/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'update']);
