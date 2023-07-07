@@ -47,6 +47,13 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('/produk/store', [App\Http\Controllers\Backend\ProdukController::class, 'store']);
         Route::delete('/produk/destroy/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'destroy']);
         Route::put('/produk/update/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'update']);
+        Route::get('/kategori', [App\Http\Controllers\Backend\KategoriProdukController::class, 'index']);
+        Route::get('/kategori/create', [App\Http\Controllers\Backend\KategoriProdukController::class, 'create']);
+        Route::get('/kategori/edit/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'edit']);
+        Route::get('/kategori/show/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'show']);
+        Route::post('/kategori/store', [App\Http\Controllers\Backend\KategoriProdukController::class, 'store']);
+        Route::delete('/kategori/destroy/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'destroy']);
+        Route::post('/kategori/update/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'update']);
     });
 });
 
