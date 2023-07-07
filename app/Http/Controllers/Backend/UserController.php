@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -33,12 +35,13 @@ class UserController extends Controller
     {
         // dd($request->all());
         $validated = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            //'role' => 'required',
         ]);
         User::create($validated);
-        return redirect('/admin/User/');
+        return redirect('/admin/user/');
     }
 
     /**
@@ -47,7 +50,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
-        return view('Backend.user.show');
+        return view('Backend.user.show', compact('user'));
     }
 
     /**
@@ -68,6 +71,7 @@ class UserController extends Controller
             'nama' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'role' => 'required',
         ]);
         User::where('id', $id)->update($validated);
         return redirect('/admin/user');

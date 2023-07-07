@@ -35,7 +35,6 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
 });
 
 
-
 Auth::routes();
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
@@ -47,6 +46,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('/produk/store', [App\Http\Controllers\Backend\ProdukController::class, 'store']);
         Route::delete('/produk/destroy/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'destroy']);
         Route::put('/produk/update/{id}', [App\Http\Controllers\Backend\ProdukController::class, 'update']);
+
         Route::get('/kategori', [App\Http\Controllers\Backend\KategoriProdukController::class, 'index']);
         Route::get('/kategori/create', [App\Http\Controllers\Backend\KategoriProdukController::class, 'create']);
         Route::get('/kategori/edit/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'edit']);
@@ -54,18 +54,28 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::post('/kategori/store', [App\Http\Controllers\Backend\KategoriProdukController::class, 'store']);
         Route::delete('/kategori/destroy/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'destroy']);
         Route::post('/kategori/update/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'update']);
+
+        Route::get('/pesanan', [App\Http\Controllers\Backend\PesananController::class, 'index']);
+        Route::get('/pesanan/create', [App\Http\Controllers\Backend\PesananController::class, 'create']);
+        Route::get('/pesanan/edit/{id}', [App\Http\Controllers\Backend\PesananController::class, 'edit']);
+        Route::get('/pesanan/show/{id}', [App\Http\Controllers\Backend\PesananController::class, 'show']);
+        Route::post('/pesanan/store', [App\Http\Controllers\Backend\PesananController::class, 'store']);
+        Route::delete('/pesanan/destroy/{id}', [App\Http\Controllers\Backend\PesananController::class, 'destroy']);
+        Route::put('/pesanan/update/{id}', [App\Http\Controllers\Backend\PesananController::class, 'update']);
+
+        Route::get('/user', [App\Http\Controllers\Backend\UserController::class, 'index']);
+        Route::get('/user/create', [App\Http\Controllers\Backend\UserController::class, 'create']);
+        Route::get('/user/edit/{id}', [App\Http\Controllers\Backend\UserController::class, 'edit']);
+        Route::get('/user/show/{id}', [App\Http\Controllers\Backend\UserController::class, 'show']);
+        Route::post('/user/store', [App\Http\Controllers\Backend\UserController::class, 'store']);
+        Route::delete('/user/destroy/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy']);
+        Route::put('/user/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'update']);
+
+        Route::get('/cart', [App\Http\Controllers\Backend\CartController::class, 'index']);
+        Route::get('/cart/show/{id}', [App\Http\Controllers\Backend\CartController::class, 'show']);
     });
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//belum dimasukin ke khusus admin ya bang
-Route::get('/user', [App\Http\Controllers\Backend\UserController::class, 'index']);
-Route::get('/user/create', [App\Http\Controllers\Backend\UserController::class, 'create']);
-Route::get('/user/edit/{id}', [App\Http\Controllers\Backend\UserController::class, 'edit']);
-Route::get('/user/show/{id}', [App\Http\Controllers\Backend\UserController::class, 'show']);
-Route::post('/user/store', [App\Http\Controllers\Backend\UserController::class, 'store']);
-Route::delete('/user/destroy/{id}', [App\Http\Controllers\Backend\UserController::class, 'destroy']);
-Route::put('/user/update/{id}', [App\Http\Controllers\Backend\UserController::class, 'update']);

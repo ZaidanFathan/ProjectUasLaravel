@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pesanan;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+// use Auth;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class PesananController extends Controller
 {
@@ -24,6 +25,7 @@ class PesananController extends Controller
         ->join('produk', 'produk.id', '=', 'cart.produk_id')
         ->join('kategori_produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
         ->select('produk.*', 'kategori_produk.nama AS Kategori', 'cart.total AS Total_Pesanan')
+        ->where("users_id", Auth::user()->id)
         ->get();
 
         return view('Frontend.Pesanan.form', compact('data'));
@@ -35,6 +37,7 @@ class PesananController extends Controller
         ->join('produk', 'produk.id', '=', 'cart.produk_id')
         ->join('kategori_produk', 'kategori_produk.id', '=', 'produk.kategori_produk_id')
         ->select('produk.*', 'kategori_produk.nama AS Kategori', 'cart.total AS Total_Pesanan', 'cart.id AS IdCart')
+        ->where("users_id", Auth::user()->id)
         ->get();
         
         foreach ($cart as $value) {
@@ -52,7 +55,7 @@ class PesananController extends Controller
             'users_id' => Auth::user()->id
         ]);
         $TotalHarga = 0;
-        DB::table('cart')->where('id', '=', $value->IdCart)->delete();
+        DB::table('cart')->where('id', '=', $value->IdCart)->where('users_id', Auth::user()->id)->delete();
     }
 
 
