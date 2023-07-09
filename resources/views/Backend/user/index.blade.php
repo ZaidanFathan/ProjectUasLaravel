@@ -16,9 +16,9 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama Pemesan</th>
-                            <th>Alamat Pemesan</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Password</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>

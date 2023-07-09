@@ -52,6 +52,7 @@
                             @if (count($errors) > 0)
                                 <i class="text-danger"><small>{{ $errors->first('role') }}</small></i>
                             @endif
+                            <label for="">Pilihan : user dan admin</label>
                         </div>
                     </div>
                     <div class="form-group row">
