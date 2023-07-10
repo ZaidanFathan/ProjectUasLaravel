@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
         Route::get('/cart', [App\Http\Controllers\Backend\CartController::class, 'index']);
         Route::get('/cart/show/{id}', [App\Http\Controllers\Backend\CartController::class, 'show']);
+        Route::delete('/cart/destroy/{id}', [App\Http\Controllers\Backend\CartController::class, 'destroy']);
     });
 });
 
