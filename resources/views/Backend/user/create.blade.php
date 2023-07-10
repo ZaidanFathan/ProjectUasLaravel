@@ -11,20 +11,20 @@
                 Tambah Produk
             </div>
             <div class="card-body">
-                <form method="post" action="{{ url('admin/produk/store') }}">
+                <form method="post" action="{{ url('admin/user/store') }}">
                     @csrf
                     <div class="form-group row mb-3">
                         <label for="nama" class="col-4 col-form-label">nama</label>
                         <div class="col-8">
-                            <input id="nama" name="nama" value="{{ old('nama') }}" type="text"
+                            <input id="name" name="name" value="{{ old('name') }}" type="text"
                                 class="form-control">
                             @if (count($errors) > 0)
-                                <i class="text-danger"><small>{{ $errors->first('nama') }}</small></i>
+                                <i class="text-danger"><small>{{ $errors->first('name') }}</small></i>
                             @endif
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label for="email" class="col-4 col-form-label">Nama</label>
+                        <label for="email" class="col-4 col-form-label">Email</label>
                         <div class="col-8">
                             <input id="email" name="email" value="{{ old('email') }}" type="text"
                                 class="form-control">
@@ -36,7 +36,7 @@
                     <div class="form-group row mb-3">
                         <label for="password" class="col-4 col-form-label">Password</label>
                         <div class="col-8">
-                            <input id="password" name="password" value="{{ old('password') }}" type="number"
+                            <input id="password" name="password" value="{{ old('password') }}" type="text"
                                 class="form-control">
                             @if (count($errors) > 0)
                                 <i class="text-danger"><small>{{ $errors->first('password') }}</small></i>

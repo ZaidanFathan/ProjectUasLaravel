@@ -3,21 +3,19 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\KategoriProduk;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\DB;
-
-class UserController extends Controller
+class KategoriProdukController extends Controller
 {
-    //
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = User::all();
-        return view('Backend.User.index', compact('user'));
+        //
+        $kategori = KategoriProduk::all();
+        return view('Backend.Kategori.index', compact('kategori'));
     }
 
     /**
@@ -25,7 +23,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('Backend.User.create');
+        //
+        $kategori = KategoriProduk::all();
+        return view('Backend.Kategori.create', compact('kategori'));
     }
 
     /**
@@ -33,15 +33,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        //
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            //'role' => 'required',
+            'nama' => 'required',
         ]);
-        User::create($validated);
-        return redirect('/admin/user/');
+        KategoriProduk::create($validated);
+        return redirect('/admin/kategori/');
     }
 
     /**
@@ -49,8 +46,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
-        return view('Backend.user.show', compact('user'));
+        //
+        $kategori= KategoriProduk::find($id);
+        return view('Backend.kategori.show',  compact('kategori'));
     }
 
     /**
@@ -58,8 +56,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $user = User::find($id);
-        return view('Backend.user.edit', compact('user'));
+        //
+        $kategori = KategoriProduk::find($id);
+        return view('Backend.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -67,14 +66,12 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //
         $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'role' => 'required',
+            'nama' => 'required',
         ]);
-        User::where('id', $id)->update($validated);
-        return redirect('/admin/user');
+        KategoriProduk::where('id', $id)->update($validated);
+        return redirect('/admin/kategori');
     }
 
     /**
@@ -82,7 +79,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        User::destroy($id);
-        return redirect('/admin/user');
+        //
+        KategoriProduk::destroy($id);
+        return redirect('/admin/kategori');
     }
 }
