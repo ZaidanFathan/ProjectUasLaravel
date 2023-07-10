@@ -66,5 +66,7 @@ class CartController extends Controller
     public function destroy(string $id)
     {
         //
+        Cart::destroy($id);
+        return redirect('/admin/cart');
     }
 }

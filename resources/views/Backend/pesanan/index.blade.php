@@ -37,7 +37,7 @@
                                 <td>{{ $ps->produk_id}}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="{{ url('/admin/pesanan/show', $ps->id) }}"><i class="fas fa-eye"></i></a>
-                                    <a class="btn btn-warning btn-sm" href="{{ url('/admin/pesanan/edit', $ps->id) }}"><i class="fas fa-pen"></i></a>
+                                    <!-- <a class="btn btn-warning btn-sm" href="{{ url('/admin/pesanan/edit', $ps->id) }}"><i class="fas fa-pen"></i></a> -->
                                     <form action="{{ url('/admin/pesanan/destroy', $ps->id) }}"
                                         class="d-inline" method="POST">
                                         @csrf

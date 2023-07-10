@@ -68,7 +68,7 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'nama' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role' => 'required',
@@ -83,6 +83,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect('/admin/User');
+        return redirect('/admin/user');
     }
 }
