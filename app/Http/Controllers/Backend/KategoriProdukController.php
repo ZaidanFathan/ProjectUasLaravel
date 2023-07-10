@@ -47,7 +47,7 @@ class KategoriProdukController extends Controller
     public function show(string $id)
     {
         //
-        $kategori= KategoriProduk::find($id);
+        $kategori = KategoriProduk::find($id);
         return view('Backend.kategori.show',  compact('kategori'));
     }
 

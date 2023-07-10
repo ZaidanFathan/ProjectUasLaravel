@@ -53,7 +53,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/kategori/show/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'show']);
         Route::post('/kategori/store', [App\Http\Controllers\Backend\KategoriProdukController::class, 'store']);
         Route::delete('/kategori/destroy/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'destroy']);
-        Route::post('/kategori/update/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'update']);
+        Route::put('/kategori/update/{id}', [App\Http\Controllers\Backend\KategoriProdukController::class, 'update']);
 
         Route::get('/pesanan', [App\Http\Controllers\Backend\PesananController::class, 'index']);
         Route::get('/pesanan/create', [App\Http\Controllers\Backend\PesananController::class, 'create']);
