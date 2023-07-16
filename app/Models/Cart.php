@@ -20,4 +20,6 @@ class Cart extends Model
     function Produk()  {
         return $this->belongsToMany(Produk::class);
     }
+
+
 }

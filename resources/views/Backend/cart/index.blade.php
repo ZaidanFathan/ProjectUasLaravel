@@ -30,7 +30,6 @@
                                 <td>{{ $c->users_id }}</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" href="{{ url('/admin/cart/show', $c->id) }}"><i class="fas fa-eye"></i></a>
-                                    <a class="btn btn-warning btn-sm" href="{{ url('/admin/cart/edit', $c->id) }}"><i class="fas fa-pen"></i></a>
                                     <form action="{{ url('/admin/cart/destroy', $c->id) }}"
                                         class="d-inline" method="POST">
                                         @csrf

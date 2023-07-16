@@ -25,7 +25,9 @@
               </div>
             @endif
              
-            
+            <form action="{{url('/produk/cart/update')}}" method="POST">
+              @csrf
+
               @foreach ($cart as $value)
               @php $total += ($value->harga_jual + 25000) * $value->Total_Pesanan @endphp  
                   <tr>
@@ -38,7 +40,8 @@
               <td>{{ $value->nama }}</td>
               <td>{{ number_format( $value->harga_jual,2,',','.') }}</td>
               <td>{{ $value->Kategori }}</td>
-              <td>{{ $value->Total_Pesanan}}</td>
+              <td><input type="number" value="{{$value->Total_Pesanan}}" size="5" name="total_pesanan[]" class="form-control"></td>
+              <input type="hidden" name="idProduk[]" value="{{$value->id}}">
               <td class="text-center">
                 <a href="{{url('/produk/cart/delete/' . $value->id)}}" class="text-decoration-none "
                   ><i class="fas fa-times fa-xs"></i
@@ -46,9 +49,11 @@
               </td>
             </tr>
             @endforeach
-           
+        
           </tbody>
         </table>
+        <button type="submit" class="btn btn-success">Update cart</button>
+      </form>
       </div>
       <div class="col-lg-6">
         <div class="card w-100 h-100" style="width: 18rem">

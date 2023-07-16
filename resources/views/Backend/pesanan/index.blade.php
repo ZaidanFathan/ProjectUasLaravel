@@ -11,7 +11,6 @@
                 Data Pesanan
             </div>
             <div class="card-body">
-                <a href="{{('/admin/pesanan/create')}}" class="btn btn-primary btn-sm mb-3">Tambah Data</a>
                 <table id="datatablesSimple">
                     <thead>
                         <tr>

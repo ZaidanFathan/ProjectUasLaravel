@@ -54,4 +54,12 @@ class CartController extends Controller
  
          return redirect('/produk/cart');
      }
+
+     public function update(Request $request) {
+       foreach ($request->idProduk as $key => $value) {
+            DB::table('cart')->where('produk_id', $value)->where('users_id', Auth::user()->id)->update(['total' => $request->total_pesanan[$key]]);
+       }
+  
+        return redirect('/produk/cart');
+     }
 }

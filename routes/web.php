@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function() {
         Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'index']);
         Route::get('cart/insert/{id}', [App\Http\Controllers\Frontend\CartController::class, 'insert']);
         Route::get('cart/delete/{id}', [App\Http\Controllers\Frontend\CartController::class, 'delete']);
+        Route::post('cart/update/', [App\Http\Controllers\Frontend\CartController::class, "update"]);
     });
 
     Route::prefix('pesanan')->group(function() {

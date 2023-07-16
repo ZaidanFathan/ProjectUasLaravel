@@ -42,6 +42,7 @@ class ProdukController extends Controller
             'min_stok' => 'required',
             'deskripsi' => 'required',
             'kategori_produk_id' => 'required',
+            'img' => 'required'
         ]);
         Produk::create($validated);
         return redirect('/admin/produk');
@@ -80,6 +81,7 @@ class ProdukController extends Controller
             'min_stok' => 'required',
             'deskripsi' => 'required',
             'kategori_produk_id' => 'required',
+            'img' => 'required'
         ]);
         Produk::where('id', $id)->update($validated);
         return redirect('/admin/produk');
