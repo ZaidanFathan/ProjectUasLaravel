@@ -40,7 +40,7 @@
               <td>{{ $value->nama }}</td>
               <td>{{ number_format( $value->harga_jual,2,',','.') }}</td>
               <td>{{ $value->Kategori }}</td>
-              <td><input type="number" value="{{$value->Total_Pesanan}}" size="5" name="total_pesanan[]" class="form-control"></td>
+              <td><input type="number" value="{{$value->Total_Pesanan}}" min="1" name="total_pesanan[]" class="form-control"></td>
               <input type="hidden" name="idProduk[]" value="{{$value->id}}">
               <td class="text-center">
                 <a href="{{url('/produk/cart/delete/' . $value->id)}}" class="text-decoration-none "
@@ -52,7 +52,9 @@
         
           </tbody>
         </table>
+        @if (count($cart) != 0 )
         <button type="submit" class="btn btn-success">Update cart</button>
+        @endif
       </form>
       </div>
       <div class="col-lg-6">
